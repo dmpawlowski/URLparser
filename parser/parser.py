@@ -21,9 +21,12 @@ class URLparser(object):
       return None
 
   def path(self):
-    s = re.search(r'//.*(/.*);', self.url)
+    s = re.search(r'//.*(/[\w.]+);*', self.url)
     return s.group(1)
 
   def params(self):
     s = re.search(r';(.+)', self.url)
-    return s.group(1)
+    if s:
+      return s.group(1)
+    else:
+      return None
