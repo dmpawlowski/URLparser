@@ -1,7 +1,7 @@
 from nose.tools import *
 from parser.parser import *
 
-url = "http://www.dmpawlowski.com:80/index.html;params"
+url = "http://www.dmpawlowski.com/index.html;params"
 
 def test_scheme():
   c = URLparser(url)
@@ -13,7 +13,7 @@ def test_host():
 
 def test_port():
   c = URLparser(url)
-  assert_equal(c.port(),'80')
+  assert_equal(c.port(),None)
 
 def test_path():
   c = URLparser(url)

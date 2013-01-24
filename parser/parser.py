@@ -10,12 +10,15 @@ class URLparser(object):
     return s.group()
 
   def host(self):
-    s = re.search(r'//(.+):', self.url)
+    s = re.search(r'//(.+)[:|/]', self.url)
     return s.group(1)
 
   def port(self):
     s = re.search(r':(..)/', self.url)
-    return s.group(1)
+    if s:
+      return s.group(1)
+    else:
+      return None
 
   def path(self):
     s = re.search(r'//.*(/.*);', self.url)
