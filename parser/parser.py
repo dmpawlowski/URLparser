@@ -18,15 +18,15 @@ class URLparser(object):
     if s:
       return s.group(1)
     else:
-      return None
+      return '80'
 
   def path(self):
     s = re.search(r'//.*(/[\w.]+);*', self.url)
     return s.group(1)
 
   def params(self):
-    s = re.search(r';(.+)', self.url)
+    s = re.search(r';(\w+)=(\w+)', self.url)
     if s:
-      return s.group(1)
+      return (s.group(1), s.group(2))
     else:
       return None
