@@ -25,30 +25,19 @@ class URLparser(object):
     return s.group(1)
 
   def params(self):
-    s = True
-    param = []
-    while s == True:
-      s = re.search(r';(\w+)=(\w+)', self.url)
-      if s:
-        param.append((s.group(1), s.group(2)))
-    return param
+    s = re.findall(r';(\w+)=(\w+)', self.url)
+    if s:
+      return s
+    else:
+      return None
 
   def query(self):
-    s = True
-    query = []
-    while s == True:
-      s = re.search(r'\?(\w+)=(\w+)', self.url)
-      if s:
-        query.append((s.group(1), s.group(2)))
-    return query
+    s = re.findall(r'\?(\w+)=(\w+)', self.url)
+    if s:
+      return s
+    else:
+      return None
 
   def frag(self):
     s = re.search(r'#(\w+)', self.url)
     return s.group(1)
-
-   # def params(self):
-   #  s = re.search(r';(\w+)=(\w+)', self.url)
-   #  if s:
-   #    return (s.group(1), s.group(2))
-   #  else:
-   #    return None

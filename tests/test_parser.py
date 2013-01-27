@@ -1,7 +1,7 @@
 from nose.tools import *
 from parser.parser import *
 
-url = "http://www.dmpawlowski.com/index.html;awesome=true?genius=true#bananas"
+url = "http://www.dmpawlowski.com/index.html;awesome=true?genius=true#bananas;foo=bar?apple=red"
 
 def test_scheme():
   c = URLparser(url)
@@ -21,11 +21,11 @@ def test_path():
 
 def test_params():
   c = URLparser(url)
-  assert_equal(c.params(), [('awesome', 'true')])
+  assert_equal(c.params(), [('awesome', 'true'), ('foo', 'bar')])
 
 def test_query():
   c = URLparser(url)
-  assert_equal(c.query(), [('genius', 'true')])
+  assert_equal(c.query(), [('genius', 'true'), ('apple', 'red')])
 
 def test_frag():
   c = URLparser(url)
